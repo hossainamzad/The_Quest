@@ -1,0 +1,22 @@
+body{
+}
+
+img{
+  width: 60%;
+  display: flex;
+  margin: auto;
+  /*to make it center*/
+  margin-top: 140px;
+}
+
+#btn{
+ text-align: center;
+ padding-top: 10px;
+ cursor: pointer;
+}
+#d{
+  width: 30px;
+  height: 40px;
+  background-color: yellow;
+}
+
