@@ -14,6 +14,22 @@ class Question {
   correctAnswer (choice) {
     return choice === this.answer;
   }
+
+//   displayQuestion () {
+//     let questionToDisplay = "<div id='quiz'>" + this.text + "</div><ul>";
+//         let choiceCounter = 0;
+//     this.choices.forEach(function (eachChoice) {
+//         questionToDisplay += '<li><input type="radio" name="choice" value="' + choiceCounter + '">' + eachChoice + '</li>';
+//         choiceCounter++;
+//     });
+//     questionToDisplay += "</ul>";
+//     console.log (questionToDisplay);
+// }
+
+
+
+
+
 }
 
 class Quiz {
@@ -38,25 +54,44 @@ class Quiz {
 
 let questions = [
   new Question("What's the capital of Bangladesh?",["Dhaka", "Seol", "Guam", "Delhi"],"Dhaka"),
-  new Question("What's the state language of Bangladesh?",["Dhaka", "Seol", "Guam", "Delhi"],"Bengali"),
+  new Question("What's the state language of Bangladesh?",["Hindi", "Creol", "Bengali", "Urdu"],"Bengali"),
   new Question("Which continents is Bangladesh located at?", ["Australia", "Asia", "South Asia", "South America"], "South Asia")
 
 ];
-        console.log(questions);
-
  const populate = function () {
         // let w = new Question();
-     // questions.forEach(function(element){
-     //  console.log(element);
+     questions.forEach(function(element, index){
+     // element.displayQuestion();
 
-     // })
+      console.log(element.text);
+      console.log(element.choices);
+      console.log(element.answer);
+      // let radioBtn = $('<input type="radio" name="rbtnCount" />');
+      // radioBtn.appendTo('#quiz')
+      $('<h2>').html(element.text).appendTo('#quiz');
+      element.choices.forEach((choice) => {
+        $('<h3>').html(choice).addClass(`${index}`).appendTo('#quiz');
+        $('h3').click(function() {
+          // check to see if the clicked item matches with the answer
+          // if matches
+            // you get it.
+          // else
+            // you didnt get it. AND
+              // move on to the next question
 
-  var results = questions.filter(function(obj){
-      for (var i = 0; i < results.length; i++){
-        console.log(results[i].choices);
-      }
-    })
-
+          console.log(this);
+          let l = this.answer;
+          console.log(l)
+          if (this.choice === this.answer) {
+            // alert("WOOOnnnnnnnn");
+            console.log("You got it!!!");
+          }else{
+            console.log(this.element);
+          }
+        });
+      });
+      // $('<h4>').html(element.answer).appendTo('#quiz');
+     });
   }
 
 
