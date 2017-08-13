@@ -14,7 +14,6 @@ class Question {
   correctAnswer (choice) {
     return choice === this.answer;
   }
-
 //   displayQuestion () {
 //     let questionToDisplay = "<div id='quiz'>" + this.text + "</div><ul>";
 //         let choiceCounter = 0;
@@ -25,13 +24,7 @@ class Question {
 //     questionToDisplay += "</ul>";
 //     console.log (questionToDisplay);
 // }
-
-
-
-
-
 }
-
 class Quiz {
   constructor (questions) {
     this.questions = questions;
@@ -51,12 +44,10 @@ class Quiz {
     }
   }
 }
-
 let questions = [
   new Question("What's the capital of Bangladesh?",["Dhaka", "Seol", "Guam", "Delhi"],"Dhaka"),
   new Question("What's the state language of Bangladesh?",["Hindi", "Creol", "Bengali", "Urdu"],"Bengali"),
   new Question("Which continents is Bangladesh located at?", ["Australia", "Asia", "South Asia", "South America"], "South Asia")
-
 ];
  const populate = function () {
         // let w = new Question();
@@ -83,10 +74,12 @@ let questions = [
           let l = this.answer;
           console.log(l)
           if (this.choice === this.answer) {
-            // alert("WOOOnnnnnnnn");
+            alert("You got it!!!");
+
             console.log("You got it!!!");
           }else{
-            console.log(this.element);
+            // console.log(this.element);
+            console.log("Try again");
           }
         });
       });
@@ -94,15 +87,19 @@ let questions = [
      });
   }
 
-
 const newQuiz = new Quiz (questions);
 
 $(document).ready (function () {
 
     $('#btn').click (function () {
     $(this).hide();
+    $("#form").hide();
+    $("#d").hide();
+    $("#e").hide();
+    $("#f").hide();
+    $("#d").css("visiblity", "visible");
     $("#d").draggable();
-    // $("#submit").draggable();
+    $("#submit").css("visibility", "visible");
     if(newQuiz.isGameOver()){
       console.log("Wattttttt");
     }else{
@@ -113,8 +110,15 @@ $(document).ready (function () {
       // quizContainer.append(b);
       populate();
       }
+
+
   });
 
+   $("#submit").click(function(){
+      $("#modal").css("visibility", "visible");
+      $("#modal").hide('slow');
+      $("#modal").slideUp('slow');
+    });
 });
 
 /*
