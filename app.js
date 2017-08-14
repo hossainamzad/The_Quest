@@ -84,6 +84,7 @@ let questions = [
             // else
               // you didnt get it. AND
                 // move on to the next question
+                let counter = 0;
             console.log(this);
             let l = $(this).html();
             console.log(l)
@@ -95,6 +96,7 @@ let questions = [
             }else{
               // console.log(this.element);
               console.log("Try again");
+              alert("try again");
               counter += 1
             }
 
@@ -127,8 +129,6 @@ $(document).ready (function () {
       // quizContainer.append(b);
       populate();
       }
-
-
   });
 
    $("#submit").click(function(){
