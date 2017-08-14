@@ -5,6 +5,7 @@ const quizContainer = $("#quiz");
 const resultsContainer = $("#results");
 // const submitResults = document.querySelector("#submit");
 const submitResults = $("#submit");
+// class constructor for Question object
 class Question {
   constructor (text, choices, answer) {
     this.text = text;
@@ -25,6 +26,11 @@ class Question {
 //     console.log (questionToDisplay);
 // }
 }
+// test the Question class
+
+const que1 = new Question("What's GA?", ["code school", "dance school", "fun act"], "code School");
+que1.correctAnswer("code school");
+
 class Quiz {
   constructor (questions) {
     this.questions = questions;
@@ -44,6 +50,12 @@ class Quiz {
     }
   }
 }
+//test the constructors
+const quizA = new Quiz("What's GA?", ["code school", "dance school", "fun act"], "code School");
+quizA.getQuestion();
+quizA.isGameOver();
+// quizA.answerChoicce();
+
 let questions = [
   new Question("What's the capital of Bangladesh?",["Dhaka", "Seol", "Guam", "Delhi"],"Dhaka"),
   new Question("What's the state language of Bangladesh?",["Hindi", "Creol", "Bengali", "Urdu"],"Bengali"),
@@ -54,37 +66,42 @@ let questions = [
      questions.forEach(function(element, index){
      // element.displayQuestion();
 
-      console.log(element.text);
-      console.log(element.choices);
-      console.log(element.answer);
-      // let radioBtn = $('<input type="radio" name="rbtnCount" />');
-      // radioBtn.appendTo('#quiz')
-      $('<h2>').html(element.text).appendTo('#quiz');
-      element.choices.forEach((choice) => {
-        $('<h3>').html(choice).addClass(`${index}`).appendTo('#quiz');
-        $('h3').click(function() {
-          // check to see if the clicked item matches with the answer
-          // if matches
-            // you get it.
-          // else
-            // you didnt get it. AND
-              // move on to the next question
+        console.log(element.text);
+        console.log(element.choices);
+        console.log(element.answer);
+        // let radioBtn = $('<input type="radio" name="rbtnCount" />');
+        // radioBtn.appendTo('#quiz')
+        $('<h2>').html(element.text).appendTo('#quiz');
+        element.choices.forEach((choice) => {
+          $('<h3>').html(choice).addClass(`${index}`).appendTo('#quiz');
+           });
+    });
+          $('h3').click(function() {
 
-          console.log(this);
-          let l = this.answer;
-          console.log(l)
-          if (this.choice === this.answer) {
-            alert("You got it!!!");
+            // check to see if the clicked item matches with the answer
+            // if matches
+              // you get it.
+            // else
+              // you didnt get it. AND
+                // move on to the next question
+            console.log(this);
+            let l = $(this).html();
+            console.log(l)
+            if (l === questions[0].answer) {
+              alert("You got it!!!");
+              return;
+              counter += 1
+              console.log("You got it!!!");
+            }else{
+              // console.log(this.element);
+              console.log("Try again");
+              counter += 1
+            }
 
-            console.log("You got it!!!");
-          }else{
-            // console.log(this.element);
-            console.log("Try again");
-          }
-        });
-      });
+          });
+
       // $('<h4>').html(element.answer).appendTo('#quiz');
-     });
+
   }
 
 const newQuiz = new Quiz (questions);
