@@ -2,6 +2,7 @@ console.log("HEY LOG!!!!!");
 
 // global values for your score counters
 let counter = 0;
+let scoreCounter = 0;
 
 // const quizContainer = document.querySelector("#quiz");
 const quizContainer = $("#quiz");
@@ -97,19 +98,25 @@ let questions = [
   console.log(l)
   // what is the current question im clicking on
   let indx = parseInt(event.target.id);
-  if (l === questions[indx].answer) {
-  alert("You got it!!!");
-  counter++;
-  return;
-  // counter += 1
-  console.log("You got it!!!");
-  }else{
-  // console.log(this.element);
-  // console.log("Try again");
-  alert("try again")
-  // counter += 1
-  }
+    if (l === questions[indx].answer) {
+    alert("You got it!!!");
+    counter++;
+    scoreCounter++;
+    console.log(scoreCounter);
 
+    // return;
+    // counter += 1
+    console.log("You got it!!!");
+    }else{
+    // console.log(this.element);
+    // console.log("Try again");
+    alert("try again")
+    // counter += 1
+    scoreCounter--;
+    }
+    alert("Your score is: " + scoreCounter);
+    $('#nameHolder').append(scoreCounter).css("visibility", "visible");
+    console.log(scoreCounter);
   });
 
       // $('<h4>').html(element.answer).appendTo('#quiz');
@@ -128,6 +135,10 @@ $(document).ready (function () {
     $("#f").hide();
     $("#d").css("visiblity", "visible");
     $("#d").draggable();
+    let text = $("input:text").val();
+    alert(text);
+    // to append the name of the player on the screen
+    $('#nameHolder').append(text + " is playing now.").css("visibility", "visible");
     $("#submit").css("visibility", "visible");
     if(newQuiz.isGameOver()){
       console.log("Wattttttt");

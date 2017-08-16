@@ -67,4 +67,30 @@ img{
   margin-top: 50px;
   margin-left: 300px;
 }
+#nameHolder {
+  float: right;
+  margin-top: -800px;
+  height: 30px;
+  width: 250px;
+  background-color: white;
+  text-align: center;
+  visibility: hidden;
+  padding: 5px;
+  border-radius: 40%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
