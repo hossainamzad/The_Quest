@@ -78,10 +78,24 @@ img{
   padding: 5px;
   border-radius: 40%;
 }
+.green{
+  color: green;
+}
+.red{
+  color: red;
+}
 
-
-
-
+#scoreBoard {
+  float: right;
+  margin-top: -700px;
+  height: 30px;
+  width: 250px;
+  background-color: white;
+  text-align: center;
+  visibility: hidden;
+  padding: 5px;
+  border-radius: 40%;
+}
 
 
 

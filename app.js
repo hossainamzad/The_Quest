@@ -99,32 +99,26 @@ let questions = [
   // what is the current question im clicking on
   let indx = parseInt(event.target.id);
     if (l === questions[indx].answer) {
-    alert("You got it!!!");
-    counter++;
-    scoreCounter++;
-    console.log(scoreCounter);
-
-    // return;
-    // counter += 1
-    console.log("You got it!!!");
+      // turn the answer Green since it's right
+      $(this).addClass('green');
+      // increment the counter
+      counter++;
+      // increment the scorecounter.
+      scoreCounter++;
+      // console.log(scoreCounter);
     }else{
-    // console.log(this.element);
-    // console.log("Try again");
-    alert("try again")
-    // counter += 1
-    scoreCounter--;
+       // turn it into Red color since it's wrong
+      $(this).addClass('red');
+      // decrease the scorecounter
+      scoreCounter--;
     }
-    alert("Your score is: " + scoreCounter);
-    $('#nameHolder').append(scoreCounter).css("visibility", "visible");
+    // alert("Your score is: " + scoreCounter);
+    $('#score').html("The score is: " + scoreCounter++);
     console.log(scoreCounter);
   });
-
       // $('<h4>').html(element.answer).appendTo('#quiz');
-
   }
-
 const newQuiz = new Quiz (questions);
-
 $(document).ready (function () {
 
     $('#btn').click (function () {
@@ -139,6 +133,7 @@ $(document).ready (function () {
     alert(text);
     // to append the name of the player on the screen
     $('#nameHolder').append(text + " is playing now.").css("visibility", "visible");
+    $('#score').html(scoreCounter++).css("visibility", "visible");
     $("#submit").css("visibility", "visible");
     if(newQuiz.isGameOver()){
       console.log("Wattttttt");
@@ -151,7 +146,6 @@ $(document).ready (function () {
       populate();
       }
   });
-
    $("#submit").click(function(){
       $("#modal").css("visibility", "visible");
       $("#modal").hide('slow');
