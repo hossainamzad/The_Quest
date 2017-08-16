@@ -1,4 +1,8 @@
 console.log("HEY LOG!!!!!");
+
+// global values for your score counters
+let counter = 0;
+
 // const quizContainer = document.querySelector("#quiz");
 const quizContainer = $("#quiz");
 // const resultsContainer = document.querySelector("#results");
@@ -7,9 +11,9 @@ const resultsContainer = $("#results");
 const submitResults = $("#submit");
 // class constructor for Question object
 class Question {
-  constructor (text, choices, answer) {
-    this.text = text;
-    this.choices = choices;
+  constructor (questionBody, answerChoices, answer) {
+    this.questionBody = questionBody;
+    this.answerChoices = answerChoices;
     this.answer = answer;
   }
   correctAnswer (choice) {
@@ -18,7 +22,7 @@ class Question {
 //   displayQuestion () {
 //     let questionToDisplay = "<div id='quiz'>" + this.text + "</div><ul>";
 //         let choiceCounter = 0;
-//     this.choices.forEach(function (eachChoice) {
+//     this.answerChoices.forEach(function (eachChoice) {
 //         questionToDisplay += '<li><input type="radio" name="choice" value="' + choiceCounter + '">' + eachChoice + '</li>';
 //         choiceCounter++;
 //     });
@@ -41,7 +45,8 @@ class Quiz {
     return this.questions[this.questionsIndex];
   }
   isGameOver () {
-    return (this.questions.length - 1) === this.questionsIndex;
+    // return (this.questions.length - 1) === this.questionsIndex;
+    return this.questions.length == 0;
   }
   answerChoicce (answer) {
     this.questionsIndex++;
@@ -61,46 +66,51 @@ let questions = [
   new Question("What's the state language of Bangladesh?",["Hindi", "Creol", "Bengali", "Urdu"],"Bengali"),
   new Question("Which continents is Bangladesh located at?", ["Australia", "Asia", "South Asia", "South America"], "South Asia")
 ];
+
  const populate = function () {
         // let w = new Question();
-     questions.forEach(function(element, index){
-     // element.displayQuestion();
+  questions.forEach(function(element, index){
+    // element.displayQuestion();
 
-        console.log(element.text);
-        console.log(element.choices);
-        console.log(element.answer);
-        // let radioBtn = $('<input type="radio" name="rbtnCount" />');
-        // radioBtn.appendTo('#quiz')
-        $('<h2>').html(element.text).appendTo('#quiz');
-        element.choices.forEach((choice) => {
-          $('<h3>').html(choice).addClass(`${index}`).appendTo('#quiz');
-           });
+    console.log(element.questionBody);
+    console.log(element.answerChoices);
+    console.log(element.answer);
+    // let radioBtn = $('<input type="radio" name="rbtnCount" />');
+    // radioBtn.appendTo('#quiz')
+    $('<h2>').html(element.questionBody).appendTo('#quiz');
+    element.answerChoices.forEach((choice) => {
+      $('<h3>').html(choice).attr('id',`${index}`).appendTo('#quiz');
     });
-          $('h3').click(function() {
+  });
 
-            // check to see if the clicked item matches with the answer
-            // if matches
-              // you get it.
-            // else
-              // you didnt get it. AND
-                // move on to the next question
-                let counter = 0;
-            console.log(this);
-            let l = $(this).html();
-            console.log(l)
-            if (l === questions[0].answer) {
-              alert("You got it!!!");
-              return;
-              counter += 1
-              console.log("You got it!!!");
-            }else{
-              // console.log(this.element);
-              console.log("Try again");
-              alert("try again");
-              counter += 1
-            }
+  $('h3').click(function(event) {
 
-          });
+  // check to see if the clicked item matches with the answer
+  // if matches
+  // you get it.
+  // else
+  // you didnt get it. AND
+  // move on to the next question
+  // let counter = 0;
+  console.log(this, parseInt(event.target.id));
+  let l = $(this).html();
+  console.log(l)
+  // what is the current question im clicking on
+  let indx = parseInt(event.target.id);
+  if (l === questions[indx].answer) {
+  alert("You got it!!!");
+  counter++;
+  return;
+  // counter += 1
+  console.log("You got it!!!");
+  }else{
+  // console.log(this.element);
+  // console.log("Try again");
+  alert("try again")
+  // counter += 1
+  }
+
+  });
 
       // $('<h4>').html(element.answer).appendTo('#quiz');
 
@@ -124,7 +134,7 @@ $(document).ready (function () {
     }else{
       // let b = $('<h1>');
       // let q = newQuiz.getQuestion();
-      // let z = q.text;
+      // let z = q.questionBody;
       // b.html(z);
       // quizContainer.append(b);
       populate();

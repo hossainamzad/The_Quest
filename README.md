@@ -1,5 +1,7 @@
 # The_Quest
 A trivia app
+![alt text](http://url/to/wireframe.jpg)
+![wireframe](wireframe.jpg)
 
 User Stories:
 -As a user, I want to be able to see a question on a page.
